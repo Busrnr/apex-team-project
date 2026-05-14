@@ -1,69 +1,67 @@
 # Retrocell
 
-AI Destekli Retrospektif Aracı — Scrum Master'ların retrospektif süreçlerini kolaylaştırmak için geliştirilmiş, yapay zeka destekli bir web uygulaması.
+Sprint retrospektiflerini AI ile otomatize eden web uygulaması. Ekip üyeleri sprint boyunca günlük notlar bırakır; uygulama bu notları Google Gemini 2.0 Flash ile analiz ederek retro gündemi, aksiyon maddeleri ve sonraki sprint hatırlatmaları üretir.
 
 <img width="1438" alt="Screenshot 2025-05-14 at 12 42 01" src="https://github.com/user-attachments/assets/placeholder-screenshot.png" />
 
-## Ozet
+## Bu proje ne işe yarar?
 
-Retrocell, sprint boyunca ekip uyelerinin guenluek notlarını toplayan, bu notları AI ile analiz ederek retrospektif gündemi oluşturan, gündem maddelerinden somut aksiyonlar üreten ve bir sonraki retro öncesinde takımı önceki sprintin aksiyonları hakkında bilgilendiren bir araçtır.
+Scrum Master'ların ve ekiplerin retrospektif sürecini daha sistematik hale getirir:
 
-Retrocell, AI destekli bir retrospektif aracı. Sprint boyunca ekip üyelerinin günlük notlarını topluyor, bu notları OpenAI GPT-4o ile analiz ederek retrospektif  
-  gündemi oluşturuyor, gündem maddelerinden somut aksiyonlar üretiyor ve bir sonraki retro öncesinde önceki sprint aksiyonlarının durumunu hatırlatıyor.            
+- **Bilgi kaybını önler.** Sprint içindeki blokajlar, kazanımlar, sorunlar tek bir yerde toplanır; retro sırasında "bu sprintte ne oldu hatırlamıyorum" sorunu ortadan kalkar.
+- **Yapılandırılmış gündem üretir.** AI notları temalara ayırır, önceliklendirir; ekip "toparlamayla" değil, tartışmayla vakit geçirir.
+- **Somut aksiyon çıktısı verir.** Gündem maddelerinden sahibi belli, takip edilebilir aksiyonlar oluşturur.
+- **Sprintler arası bağlantı kurar.** Bir sonraki retro öncesinde önceki aksiyonların durumunu özetler; "unutulmuş aksiyon" sorununu çözer.
 
-  4 ana sekmeden oluşuyor:                                                                                                                              
-  1. Günlük Notlar — Ekip üyeleri sprint boyunca blokaj, kazanım, sorun, fikir notlarını anonim olarak kaydeder.                                                    
-  2. Retro Gündemi — AI tüm sprint notlarını okur, temelere gruplar, önceliklendirir ve gündem maddeleri çıkarır.
-  3. Aksiyonlar — Seçili gündem maddelerinden AI somut, sahibi atanmış aksiyonlar üretir. Durum takibi (açık/tamamlandı/unutuldu) yapılır.
-  4. Sonraki Retro — Önceki sprint aksiyonlarının durumu AI tarafından özetlenir; takıma hatırlatma metni oluşturulur.
+## Nasıl çalışır? (Kullanım akışı)
 
-  Teknik olarak React 18, TypeScript, Tailwind CSS ve Vite ile yazıldı. Veriler tarayıcı localStorage'da saklanıyor, backend gerektirmiyor. OpenAI API anahtarı
-  verilmezse mock verilerle çalışıyor.
+1. **Günlük Notlar** – Ekip üyeleri sprint boyunca blokaj, kazanım, sorun, fikir kategorilerinde kısa notlar bırakır. Notlar anonimdir, sadece rol bilgisi (örn. "Frontend Dev") tutulur.
+2. **AI Retro Gündemi** – Sprint sonunda AI tüm notları okur, benzer konuları gruplar, önceliklendirir ve her maddeyi türüne göre sınıflandırır (Blokaj, Risk, Kazanım, İyileştirme, Soru).
+3. **Aksiyonlar** – Seçilen gündem maddelerinden AI somut, ölçülebilir aksiyonlar üretir. Her aksiyonun önerilen sahibi belirtilir; kullanıcı gerekiyorsa değiştirir. Aksiyonlar "açık", "tamamlandı", "unutuldu" olarak takip edilir.
+4. **Sonraki Retro Hatırlatması** – Yeni sprint retro'su öncesinde AI, önceki sprint aksiyonlarının durumunu analiz ederek kısa bir açılış konuşması metni üretir. "Tamamlandı / açık / unutuldu" sayısı ve en kritik unutulan aksiyon öne çıkarılır.
 
-## Ozellikler
+Hiçbir veri sunucuya gitmez. Tüm veriler tarayıcı `localStorage`'da saklanır; AI'a yalnızca not metinleri ve anonim roller gönderilir.
 
-- **Guenluek Notlar** — Ekip uyeleri sprint boyunca guenluek notlarını (blokaj, kazanım, sorun, fikir) anonim olarak kaydedebilir.
-- **AI Retro Gündem** — OpenAI GPT-4o ile sprint notları analiz edilerek temelere gruplanmış, önceliklendirilmiş gündem maddeleri oluşturulur.
-- **AI Aksiyonlar** — Seçili gündem maddelerinden somut, ölçuelbilir, sahibi atanmış aksiyon maddeleri üretilir.
-- **Sonraki Retro Hatırlatması** — AI, bir sonraki retro öncesinde önceki sprint aksiyonlarının durumunu (tamamlandı, acık, unutuldu) ozetleyerek takımı bilgilendirir.
-- **Sprint Yoentimi** — Farklı sprintler arasında geçiş yapılabilir; her sprintin kendi notları, gündemi ve aksiyonları olur.
+## Özellikler
+
+- **Günlük Notlar** – Ekip üyeleri sprint boyunca günlük notlarını (blokaj, kazanım, sorun, fikir) anonim olarak kaydedebilir.
+- **AI Retro Gündem** – Google Gemini 2.0 Flash ile sprint notları analiz edilerek temelere gruplanmış, önceliklendirilmiş gündem maddeleri oluşturulur.
+- **AI Aksiyonlar** – Seçili gündem maddelerinden somut, ölçülebilir, sahibi atanmış aksiyon maddeleri üretilir.
+- **Sonraki Retro Hatırlatması** – AI, bir sonraki retro öncesinde önceki sprint aksiyonlarının durumunu (tamamlandı, açık, unutuldu) özetleyerek takımı bilgilendirir.
+- **Sprint Yönetimi** – Farklı sprintler arasında geçiş yapılabilir; her sprintin kendi notları, gündemi ve aksiyonları olur.
 
 ## Teknolojiler
 
 | Katman | Teknoloji |
 |--------|-----------|
-| On Yuze | React 18, TypeScript, Tailwind CSS |
+| Önyüz | React 18, TypeScript, Tailwind CSS |
 | Derleme | Vite |
-| Rouiting | Yok (tek sayfa) |
-| Durum Yoenetimi | React Context + localStorage |
-| AI Entegrasyonu | OpenAI GPT-4o API |
+| Routing | Yok (tek sayfa) |
+| Durum Yönetimi | React Context + localStorage |
+| AI Entegrasyonu | Google Gemini 2.0 Flash API |
 | Linting | ESLint |
 
-## AI Aracları ve Model Bilgileri
-
-Geliştirme sürecinde kullanılan AI araçları:
+## AI Geliştirme Araçları
 
 | Araç | Model | Kullanım Amacı |
 |------|-------|----------------|
 | **Claude Code** | Claude Opus 4.7 | Kod yazma, refaktör, mimari kararlar, dökümantasyon |
 | **Claude** (Web) | Claude Opus 4.7 | Planlama, özellik tasarımı |
+| **Gemini** (Gems) | Gemini 2.0 Flash | Yardımcı analiz ve öneriler |
+| **ChatGPT** | GPT-4o | Fikir tartışması ve alternatif çözümler |
 
 Prompt yapılandırma dosyası: [`CLAUDE.md`](./CLAUDE.md)
-
-### MCP Listesi
-
-Mevcut olmayan. Proje kapsamında harici MCP sunucusu kullanılmamıştır.
 
 ## API Entegrasyonları
 
 | API | Uç Nokta | Amaç |
 |-----|----------|------|
-| OpenAI GPT-4o | `POST https://api.openai.com/v1/chat/completions` | Retro gündemi oluşturma, aksiyon üretme, hatırlatma metni oluşturma |
+| Google Gemini 2.0 Flash | `POST /v1beta/models/gemini-2.0-flash:generateContent` | Retro gündemi oluşturma, aksiyon üretme, hatırlatma metni oluşturma |
 
-## Ekran Goeruentueleri
+## Ekran Görüntüleri
 
-### Guenluek Notlar Sekmesi
-Ekip uyeleri guenluek notlarını ekler.
+### Günlük Notlar Sekmesi
+Ekip üyeleri günlük notlarını ekler.
 
 ### AI Retro Gündem Sekmesi
 AI notları analiz eder ve gündem maddeleri oluşturur.
@@ -72,7 +70,7 @@ AI notları analiz eder ve gündem maddeleri oluşturur.
 Seçili gündem maddelerinden somut aksiyonlar üretilir.
 
 ### Sonraki Retro Hatırlatması
-Önceki sprint aksiyonlarının durumu ozetlenir.
+Önceki sprint aksiyonlarının durumu özetlenir.
 
 ## Kurulum
 
@@ -80,7 +78,7 @@ Seçili gündem maddelerinden somut aksiyonlar üretilir.
 
 - Node.js 18+
 - npm 9+
-- OpenAI API anahtarı (istege baglı — yoksa mock verilerle çalışır)
+- Google Gemini API anahtarı (isteğe bağlı — yoksa örnek verilerle çalışır)
 
 ### Adımlar
 
@@ -97,11 +95,13 @@ cd apex-team-project
 npm install
 ```
 
-3. `.env.example` dosyasını `.env` olarak kopyalayıp OpenAI API anahtarınızı girin:
+3. `.env.example` dosyasını `.env` olarak kopyalayıp Gemini API anahtarınızı girin:
 
 ```bash
 cp .env.example .env
 ```
+
+API anahtarınızı [Google AI Studio](https://aistudio.google.com/app/apikey) adresinden alabilirsiniz.
 
 4. Geliştirme sunucusunu başlatın:
 
@@ -111,25 +111,19 @@ npm run dev
 
 5. Tarayıcıda `http://localhost:5173` adresini açın.
 
-### Uretim Derlemesi
+### Üretim Derlemesi
 
 ```bash
 npm run build
 ```
 
-`dist/` klasöründe uretim dosyaları oluşur.
+`dist/` klasöründe üretim dosyaları oluşur.
 
-## Cevre Degiskenleri
+## Çevre Değişkenleri
 
-| Degisken | Zorunlu | Acıklama |
+| Değişken | Zorunlu | Açıklama |
 |----------|---------|----------|
-| `VITE_OPENAI_API_KEY` | Hayır | OpenAI API anahtarı. Verilmezse mock verilerle çalışır. |
-
-.cls-1 {
-  fill: #fff; }
-
-.cls-2 {
-  fill: #0077be; }
+| `VITE_GEMINI_API_KEY` | Hayır | Google Gemini API anahtarı. Verilmezse örnek verilerle çalışır. |
 
 ## Proje Yapısı
 
@@ -137,39 +131,29 @@ npm run build
 .
 ├── src/
 │   ├── components/          # React bileşenleri
-│   │   ├── DailyNotesTab.tsx       # Guenluek notlar sekmesi
+│   │   ├── DailyNotesTab.tsx       # Günlük notlar sekmesi
 │   │   ├── RetroAgendaTab.tsx      # AI retro gündem sekmesi
 │   │   ├── ActionItemsTab.tsx      # Aksiyonlar sekmesi
 │   │   ├── NextRetroTab.tsx        # Sonraki retro hatırlatması sek.
-│   │   └── LoadingSpinner.tsx      # Yu klase animasyonu
+│   │   └── LoadingSpinner.tsx      # Yükleme animasyonu
 │   ├── context/
-│   │   └── AppContext.tsx          # Global durum yoentimi (React Context)
+│   │   └── AppContext.tsx          # Global durum yönetimi (React Context)
 │   ├── lib/
-│   │   ├── ai.ts                   # OpenAI API entegrasyonu
+│   │   ├── ai.ts                   # Gemini AI entegrasyonu ve promptlar
 │   │   └── storage.ts              # localStorage yardımcıları
 │   ├── types/
-│   │   └── index.ts                # TypeScript arayuelerı
-│   ├── assets/
-│   │   └── react.svg
+│   │   └── index.ts                # TypeScript arayüzleri
 │   ├── App.tsx                     # Ana uygulama bileşeni
 │   ├── main.tsx                    # Uygulama giriş noktası
-│   ├── index.css                   # Tailwind direktifleri
-│   ├── App.css
-│   └── vite-env.d.ts
+│   └── index.css                   # Tailwind direktifleri
 ├── docs/                    # Proje dökümantasyonu
 │   ├── plan.md              # Proje planı
 │   ├── architecture.md      # Mimari dökümentasyon
 │   └── development-phases.md # Geliştirme fazları
-├── public/
 ├── index.html
 ├── package.json
 ├── vite.config.ts
 ├── tailwind.config.js
-├── postcss.config.js
-├── eslint.config.js
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.node.json
 ├── .env.example
 ├── .gitignore
 ├── CLAUDE.md                # AI geliştirme talimatları
@@ -179,8 +163,3 @@ npm run build
 ## Lisans
 
 MIT
-
-## Kullılan ai tools 
-Gemini - Gems
-Claude Clı -Claude saka
-Chat GPT
