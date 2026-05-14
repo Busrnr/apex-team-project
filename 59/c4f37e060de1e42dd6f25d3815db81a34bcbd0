@@ -1,0 +1,19 @@
+README.md
+  s_ef4842c84d0307::t_8847259ed0a300 3,7,9,11-14,16,18-21,23,25-31,37,39-41,44,50-51,59,61,63-64,73,81,98,104-105,114,120,122,124,126,134,138,140,142,145,148
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "59c4f37e060de1e42dd6f25d3815db81a34bcbd0",
+  "prompts": {},
+  "sessions": {
+    "s_ef4842c84d0307": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "baf3e187-86f3-4fd7-936b-ef3055641562",
+        "model": "turkcell-kimi"
+      },
+      "human_author": "tcbaltintas <busra.altintas@atmosware.turkcell.com.tr>"
+    }
+  }
+}
