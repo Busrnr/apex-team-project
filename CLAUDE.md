@@ -1,10 +1,10 @@
 # AI Gelisim Talimatlari
 
-Bu dosya, Retro projesi uzerinde calisan AI agent'larina (Claude, Cursor, Codex vb.) yonelik proje ozgu talimatlar icerir.
+Bu dosya, Retrocell projesi uzerinde calisan AI agent'larina (Claude, Cursor, Codex vb.) yonelik proje ozgu talimatlar icerir.
 
 ## Proje Ozeti
 
-Retro, AI destekli bir retrospektif aracıdır. React + TypeScript + Tailwind CSS + Vite ile gelistirilmistir. Veriler localStorage'da saklanır. AI entegrasyonu OpenAI GPT-4o API uzerinden yapılır.
+Retrocell, AI destekli bir retrospektif aracıdır. React + TypeScript + Tailwind CSS + Vite ile gelistirilmistir. Veriler localStorage'da saklanır. AI entegrasyonu Google Gemini 2.0 Flash API uzerinden yapılır.
 
 ## Proje Kurallari
 
@@ -28,8 +28,8 @@ Retro, AI destekli bir retrospektif aracıdır. React + TypeScript + Tailwind CS
   1. Prompt tasarla (Scrum Master AI rolu, JSON cıktı).
   2. Mock veri olustur (API anahtarı yoksa calissin).
   3. `parseJSON()` ile cevabı parse et.
-  4. `callOpenAI()` yardımcısını kullan.
-- Model sabiti: `gpt-4o`, temperature: `0.4`.
+  4. `callGemini()` yardımcısını kullan.
+- Model sabiti: `gemini-2.0-flash`, temperature: `0.4`.
 - Promptlarda Turkce karakter sorununu onlemek icin Turkce metinleri duzgun yaz.
 
 ### Bilesen Yapisi
@@ -43,7 +43,7 @@ Retro, AI destekli bir retrospektif aracıdır. React + TypeScript + Tailwind CS
 - Yukleme durumlarını `LoadingSpinner` ile goster.
 
 ### Guvenlik
-- API anahtarlarını asla hard-code yazma. `import.meta.env.VITE_OPENAI_API_KEY` kullan.
+- API anahtarlarını asla hard-code yazma. `import.meta.env.VITE_GEMINI_API_KEY` kullan.
 - Kisisel veriler (uye isimleri) sadece localStorage'da; AI'a gonderirken anonimlestir.
 
 ## Onemli Dosyalar

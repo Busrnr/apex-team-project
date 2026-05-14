@@ -8,6 +8,18 @@ AI Destekli Retrospektif Aracı — Scrum Master'ların retrospektif süreçleri
 
 Retrocell, sprint boyunca ekip uyelerinin guenluek notlarını toplayan, bu notları AI ile analiz ederek retrospektif gündemi oluşturan, gündem maddelerinden somut aksiyonlar üreten ve bir sonraki retro öncesinde takımı önceki sprintin aksiyonları hakkında bilgilendiren bir araçtır.
 
+Retrocell, AI destekli bir retrospektif aracı. Sprint boyunca ekip üyelerinin günlük notlarını topluyor, bu notları OpenAI GPT-4o ile analiz ederek retrospektif  
+  gündemi oluşturuyor, gündem maddelerinden somut aksiyonlar üretiyor ve bir sonraki retro öncesinde önceki sprint aksiyonlarının durumunu hatırlatıyor.            
+
+  4 ana sekmeden oluşuyor:                                                                                                                              
+  1. Günlük Notlar — Ekip üyeleri sprint boyunca blokaj, kazanım, sorun, fikir notlarını anonim olarak kaydeder.                                                    
+  2. Retro Gündemi — AI tüm sprint notlarını okur, temelere gruplar, önceliklendirir ve gündem maddeleri çıkarır.
+  3. Aksiyonlar — Seçili gündem maddelerinden AI somut, sahibi atanmış aksiyonlar üretir. Durum takibi (açık/tamamlandı/unutuldu) yapılır.
+  4. Sonraki Retro — Önceki sprint aksiyonlarının durumu AI tarafından özetlenir; takıma hatırlatma metni oluşturulur.
+
+  Teknik olarak React 18, TypeScript, Tailwind CSS ve Vite ile yazıldı. Veriler tarayıcı localStorage'da saklanıyor, backend gerektirmiyor. OpenAI API anahtarı
+  verilmezse mock verilerle çalışıyor.
+
 ## Ozellikler
 
 - **Guenluek Notlar** — Ekip uyeleri sprint boyunca guenluek notlarını (blokaj, kazanım, sorun, fikir) anonim olarak kaydedebilir.
@@ -167,3 +179,8 @@ npm run build
 ## Lisans
 
 MIT
+
+## Kullılan ai tools 
+Gemini - Gems
+Claude Clı -Claude saka
+Chat GPT

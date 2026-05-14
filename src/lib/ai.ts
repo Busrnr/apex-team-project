@@ -1,6 +1,6 @@
 import { AgendaItem, ActionItem, ReminderData } from '../types';
 
-const USE_MOCK = !import.meta.env.VITE_OPENAI_API_KEY;
+const USE_MOCK = !import.meta.env.VITE_GEMINI_API_KEY;
 
 const mockAgenda: AgendaItem[] = [
   { id: 'a1', theme: 'Deployment Pipeline Kararsızlığı', summary: 'CI/CD pipeline sürekli patlıyor, birden fazla ekip üyesinin saati gidiyor ve teslimat yavaşlıyor.', priority: 'High', type: 'Blocker', selected: true },
@@ -24,22 +24,22 @@ const mockReminder: ReminderData = {
   highlight: 'Deployment Pipeline Kararsizligi — Backend Dev sahibi, 2 sprintir cozulmedi.',
 };
 
-async function callOpenAI(prompt: string): Promise<string> {
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o',
-      messages: [{ role: 'user', content: prompt }],
-      temperature: 0.4,
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI hatasi: ${res.statusText}`);
+async function callGemini(prompt: string): Promise<string> {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.4 },
+      }),
+    }
+  );
+  if (!res.ok) throw new Error(`Gemini hatasi: ${res.statusText}`);
   const data = await res.json();
-  return data.choices[0].message.content;
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
 }
 
 function parseJSON<T>(raw: string): T {
@@ -67,7 +67,7 @@ Gorevlerin:
 4. Maddeleri onceliklendir (Yuksek / Orta / Dusuk).
 5. JSON array olarak don (markdown ve aciklama yok):
 [{"id":"string","theme":"string","summary":"string","priority":"Yuksek|Orta|Dusuk","type":"Blocker|Improvement|Win|Risk|Question","selected":true}]`;
-  const raw = await callOpenAI(prompt);
+  const raw = await callGemini(prompt);
   return parseJSON<AgendaItem[]>(raw);
 }
 
@@ -92,7 +92,7 @@ Ekip uyeleri: ${membersText}
 Her gundem maddesi icin 1 somut, olculebilir aksiyon madde uret. Baglama gore en uygun sahip adayi oner.
 JSON array don (markdown ve aciklama yok):
 [{"id":"string","agendaItemTheme":"string","action":"string","suggestedOwner":"string","assignedOwner":"string","priority":"Yuksek|Orta|Dusuk","status":"open","sprintId":"${sprintId}"}]`;
-  const raw = await callOpenAI(prompt);
+  const raw = await callGemini(prompt);
   return parseJSON<ActionItem[]>(raw);
 }
 
@@ -112,6 +112,6 @@ ${actionsText}
 Tamamlanan, acik ve unutulanlarin ozetini iceren kisa, samimi ve hafif motive edici bir hatirlatma yaz (3-5 cümle).
 Sadece JSON don (markdown yok):
 {"reminderText":"string","completedCount":0,"openCount":0,"forgottenCount":0,"highlight":"string"}`;
-  const raw = await callOpenAI(prompt);
+  const raw = await callGemini(prompt);
   return parseJSON<ReminderData>(raw);
 }

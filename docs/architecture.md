@@ -8,7 +8,7 @@ Retrocell, istemci tarafında calısan (client-side) tek sayfalık bir web uygul
 |--------|-----------|------|
 | UI | React 18 + Tailwind CSS | Kullanıcı arayuzu |
 | Durum | React Context + localStorage | Global durum ve kalıcı depolama |
-| AI Entegrasyonu | OpenAI GPT-4o API | Dogal dil isleme ve uretken AI |
+| AI Entegrasyonu | Google Gemini 2.0 Flash API | Dogal dil isleme ve uretken AI |
 | Derleme | Vite | Hızlı gelistirme ve uretim derlemesi |
 | Tip Guvenligi | TypeScript | Derleme zamanı tip kontrolu |
 
