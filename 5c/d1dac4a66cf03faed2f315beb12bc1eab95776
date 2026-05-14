@@ -1,0 +1,28 @@
+src/lib/ai.ts
+  s_eb0ee608ee8e10::t_3912ffe0f130dc 3,27-40,42,70,95,115
+.env.example
+  s_eb0ee608ee8e10::t_0c78ccbd37f224 1-2
+  s_eb0ee608ee8e10::t_8a3323d94da471 3
+docs/architecture.md
+  s_eb0ee608ee8e10::t_6ddc7432fa2f3d 11
+CLAUDE.md
+  s_eb0ee608ee8e10::t_ff80e16ee7565b 3,7,31-32,46
+.gitignore
+  s_eb0ee608ee8e10::t_8fc8c1391739af 15-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "5cd1dac4a66cf03faed2f315beb12bc1eab95776",
+  "prompts": {},
+  "sessions": {
+    "s_eb0ee608ee8e10": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1798a716-1675-48a0-9c1c-18c96d6176c6",
+        "model": "turkcell-kimi"
+      },
+      "human_author": "tcbaltintas <busra.altintas@atmosware.turkcell.com.tr>"
+    }
+  }
+}
